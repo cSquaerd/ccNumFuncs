@@ -11,3 +11,4 @@ Module with various miscellaneous functions for classifications of whole numbers
 * `isCubic`: returns `true` if an integer `n` is a cubic number
 * `isPandigital`: returns `true` if an integer `n` is a strict pandigital number
 * `isHappy`: returns `true` if an integer is a happy number
+* `pascalTriLine`: returns a list of numbers from line `n` of Pascal's Triangle
