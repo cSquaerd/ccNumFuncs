@@ -25,12 +25,12 @@ module ccNumFuncs
 				true
 		local digits = []
 		m = 0
-		while n >= 10 ^ m
+		while n >= big(10) ^ m
 			m += 1
 		end
 		local k = n
 		while m > 0
-			push!(digits, div(k, 10 ^ (m - 1)) % 10)
+			push!(digits, div(k, big(10) ^ (m - 1)) % 10)
 			m -= 1
 		end
 		digits
@@ -45,15 +45,18 @@ module ccNumFuncs
 	end
 	"Returns `true` if `n` is of the form \$\\frac{k(k + 1)}{2}\$ for some \$k \\in \\mathbb{N}\$."
 	function isTriangle(n::Integer)
+		n > 0 ? true : throw(ArgumentError("`n` must be positive."))
 		local l = isqrt(2 * n)
 		l^2 + l == 2 * n
 	end
 	"Returns `true` if `n` is of the form \$k^2\$ for some \$k \\in \\mathbb{N}\$."
 	function isSquare(n::Integer)
+		n > 0 ? true : throw(ArgumentError("`n` must be positive."))
 		isqrt(n) == sqrt(n)
 	end
 	"Returns `true` if `n` is of the form \$k^3\$ for some \$k \\in \\mathbb{N}\$."
 	function isCube(n::Integer)
+		n > 0 ? true : throw(ArgumentError("`n` must be positive."))
 		try
 			Int(cbrt(n)) == cbrt(n)
 		catch
@@ -62,6 +65,7 @@ module ccNumFuncs
 	end
 	"Returns `true` if `n` written in base-10 has all base-10 digits in it."
 	function isPandigital(n::Integer)
+		n > 0 ? true : throw(ArgumentError("`n` must be positive."))
 		local digits = listDigits(n)
 		for d = 0:9
 			in(d, digits) ? continue : (return false)
@@ -70,6 +74,7 @@ module ccNumFuncs
 	end
 	"Returns `true` if `n` is happy, which means repeatedly summing the squares of the digits eventually results in \$1\$."
 	function isHappy(n::Integer)
+		n > 0 ? true : throw(ArgumentError("`n` must be positive."))
 		n == 1 ? (return true) : true
 		local unhappyNums = Array{Int64}(undef, 0)
 		local m = n
